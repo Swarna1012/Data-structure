@@ -1,0 +1,92 @@
+#include<stdio.h>
+#include<stdlib.h>
+void insertion();
+void display();
+void smallest();
+void displaysmallest();
+
+struct node
+{
+    int data;
+    struct node*next;
+}*head,*temp,*temp1,*temp2;
+
+int main()
+{
+    insertion();
+    display();
+    smallest();
+    display();
+    displaysmallest();
+}
+
+void insertion()
+{
+    int choice=1;
+    while(choice)
+    {
+        struct node*newnode;
+        newnode=malloc(sizeof(struct node));
+        printf("enter the data :");
+        scanf("%d",&newnode->data);
+        newnode->next=NULL;
+
+        if(head==NULL)
+        {
+        head=temp=newnode;
+        }
+        else
+        {
+        temp->next=newnode;
+        temp=newnode;
+        }
+        printf("enter choice 0 or 1 : ");
+        scanf("%d",&choice);
+
+    }
+    return 0;
+}
+
+void display()
+{
+    temp=head;
+    while(temp!=NULL)
+    {
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }printf("\n");
+}
+
+void smallest()
+{
+    printf("smallest \n");
+    int var;
+    temp1=head;
+    temp2=NULL;
+
+    while(temp1!=NULL)
+    {
+        temp2=temp1->next;
+        while(temp2!=NULL)
+        {
+            if(temp1->data > temp2->data)
+            {
+                var=temp1->data;
+                temp1->data = temp2->data;
+                temp2->data=var;
+            }
+            temp2=temp2->next;
+        }
+        temp1=temp1->next;
+    }
+}
+
+void displaysmallest()
+{
+    temp=head;
+    printf("Second smallest number is %d ",temp->next->data);
+}
+
+
+
+
