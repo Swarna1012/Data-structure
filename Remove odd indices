@@ -1,0 +1,68 @@
+#include<stdio.h>
+#include<stdlib.h>
+void insertion();
+void display();
+void removeodd();
+
+struct node
+{
+    int data;
+    struct node*next;
+}*head,*temp;
+
+int main()
+{
+    insertion();
+    display();
+    removeodd();
+}
+
+void insertion()
+{
+    int choice=1;
+    while(choice)
+    {
+        struct node*newnode;
+        newnode=malloc(sizeof(struct node));
+        printf("enter the data :");
+        scanf("%d",&newnode->data);
+        newnode->next=NULL;
+
+        if(head==NULL)
+        {
+        head=temp=newnode;
+        }
+        else
+        {
+        temp->next=newnode;
+        temp=newnode;
+        }
+        printf("enter choice 0 or 1 : ");
+        scanf("%d",&choice);
+
+    }
+    return 0;
+}
+
+void display()
+{
+    temp=head;
+    while(temp!=NULL)
+    {
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }printf("\n");
+}
+
+void removeodd()
+{
+    printf("odd indices \n");
+    temp=head;
+    temp=temp->next;
+    while(temp!=NULL)
+    {
+        printf("%d ",temp->data);
+        temp=temp->next->next;
+    }
+}
+
