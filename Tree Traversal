@@ -1,0 +1,117 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node
+{
+    int data;
+    struct node *left;
+    struct node *right;
+}*newnode,*root,*temp;
+
+void display_Inorder(struct node*root);
+void display_Preorder(struct node *root);
+void display_Postorder(struct node *root);
+void insert();
+void search(struct node *newnode,struct node *root);
+
+int main()
+{
+    insert();
+    printf("In Order\n");
+    display_Inorder(root);
+    printf("\nPre Order\n");
+    display_Preorder(root);
+    printf("\nPost Order\n");
+    display_Postorder(root);
+}
+
+void insert()
+{
+    int choice=1;
+    while(choice==1)
+    {
+        newnode=malloc(sizeof(struct node));
+        newnode->left=0;
+        newnode->right=0;
+        printf("Enter the data ");
+        scanf("%d",&newnode->data);
+        if(root==0)
+        {
+            root=temp=newnode;
+        }
+        else
+        {
+            search(newnode,root);
+        }
+        printf("Choice ");
+        scanf("%d",&choice);
+    }
+}
+
+void search(struct node *newnode,struct node *temp)
+{
+    while(1)
+    {
+        if(temp->left==0)
+        {
+            temp->left=newnode;
+            break;
+        }
+        if(temp->right==0)
+        {
+            temp->right=newnode;
+            break;
+        }
+        if(temp->left!=0)
+        {
+            search(newnode,temp->left);
+            break;
+        }
+        if(temp->right!=0)
+        {
+            search(newnode,temp->right);
+            break;
+        }
+    }
+}
+
+void display_Inorder(struct node *root)
+{
+    if(root==0)
+    {
+        return;
+    }
+    else
+    {
+        display_Inorder(root->left);
+        printf("%d ",root->data);
+        display_Inorder(root->right);
+    }
+}
+
+void display_Preorder(struct node *root)
+{
+    if(root==0)
+    {
+        return;
+    }
+    else
+    {
+        printf("%d ",root->data);
+        display_Preorder(root->left);
+        display_Preorder(root->right);
+    }
+}
+
+void display_Postorder(struct node *root)
+{
+    if(root==0)
+    {
+        return;
+    }
+    else
+    {
+        display_Postorder(root->left);
+        display_Postorder(root->right);
+        printf("%d ",root->data);
+    }
+}
