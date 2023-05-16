@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include<stdlib.h>
+void create();
+void display();
+void rev();
+struct node
+{
+    int data;
+    struct node *next;
+    struct node *prev;
+}*newnode,*head,*temp,*tail;
+
+int main()
+{
+   create();
+   display();
+   rev();
+}
+
+void create()
+{
+    int choice=1;
+    while(choice==1)
+    {
+    newnode=(struct node*)(malloc(sizeof(struct node)));
+    printf("enter the data\n");
+    scanf("%d",&newnode->data);
+    newnode->next=0;
+    newnode->prev=0;
+    if(head==0&&tail==0)
+    {
+        head=newnode;
+        tail=newnode;
+    }
+    else
+    {
+        temp=head;
+        while(temp->next!=0)
+        {
+            temp=temp->next;
+        }
+        temp->next=newnode;
+        newnode->prev=temp;
+        tail=newnode;
+    }
+    printf("enter the choice ");
+       scanf("%d",&choice);
+}
+}
+
+void display()
+{
+   temp=head;
+        while(temp->next!=0)
+        {
+            printf("%d ",temp->data);
+            temp=temp->next;
+        }
+        printf("%d ",temp->data);
+        printf("\n");
+}
+
+void rev()
+{
+    temp=tail;
+        while(temp->prev!=0)
+        {
+            printf("%d ",temp->data);
+            temp=temp->prev;
+        }
+        printf("%d ",temp->data);
+}
